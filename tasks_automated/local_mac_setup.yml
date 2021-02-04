@@ -1,0 +1,10 @@
+---
+# Local MAC setup for DevOps work
+- name: Ensure MAC system is ready for DevOps work
+  hosts: localhost
+  gather_facts: false
+  tasks:
+  - name: Setup users .gitconfig file
+    ansible.builtin.copy:
+      src: ".config/master.gitconfig"
+      dest: "~/.gitconfig"
