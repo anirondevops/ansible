@@ -1,0 +1,11 @@
+---
+- name: Clean the provided Namespace
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Ensure no deployment objects are present
+    shell: kubectl get deployments | awk '{print $1}' | tail -n +2 | xargs kubectl delete deployment
+  - name: Ensure no Service objects are present
+    shell: kubectl get svc | awk '{print $1}' | tail -n +2 | xargs kubectl delete svc
+  - name: Ensure no Ingress objects are present
+    shell: kubectl get ing | awk '{print $1}' | tail -n +2 | xargs kubectl delete ing
